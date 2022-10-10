@@ -1,3 +1,7 @@
+![asos-shopping](https://user-images.githubusercontent.com/61325788/194796069-c384523a-6414-4361-9a6e-3ef2e28811c6.png)
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

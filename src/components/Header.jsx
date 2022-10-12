@@ -1,13 +1,18 @@
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import Cart from "./Cart";
+import { CartContext } from "./Root/Root";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [cart, setCart] = useContext(CartContext);
+  const [dropDown, setDropDown] = useState(false);
+  console.log(dropDown);
 
   return (
-    <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+    <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 relative">
       <div className="relative flex items-center justify-between">
         <Link
           to="/"
@@ -37,32 +42,42 @@ const Header = () => {
         <ul className="flex items-center hidden space-x-8 lg:flex">
           <li>
             <Link
-              to="/product"
+              to="/home"
+              aria-label="Home"
+              title="Home"
+              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+            >
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/products"
               aria-label="Our product"
               title="Our product"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              Product
+              Products
             </Link>
           </li>
           <li>
             <Link
               to="/stats"
-              aria-label="Our product"
-              title="Our product"
+              aria-label="Statistics"
+              title="Statistics"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              Stats
+              Statistics
             </Link>
           </li>
           <li>
             <Link
-              to="/inventory"
-              aria-label="Product pricing"
-              title="Product pricing"
+              to="/order"
+              aria-label="Order Review"
+              title="Order Review"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              Inventory
+              Order Review
             </Link>
           </li>
           <li>
@@ -75,16 +90,33 @@ const Header = () => {
               About us
             </Link>
           </li>
-          <li>
-            <Link
-              to="/cart"
-              className="inline-flex items-center justify-center h-12 px-4 font-medium tracking-wide text-white transition duration-200 rounded-full shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none bg-pink-600"
-              aria-label="Sign up"
-              title="Cart"
-            >
-              <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
-            </Link>
-          </li>
+          <div className="relative ">
+            <li>
+              <button
+                onClick={() => setDropDown(!dropDown)}
+                to="/cart"
+                className="inline-flex items-center justify-center h-12 w-20 font-medium tracking-wide text-white transition duration-200 rounded-full shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none bg-pink-600"
+                aria-label="Cart"
+                title="Cart"
+              >
+                <div className=" absolute bottom-3 left-6 text-lg">
+                  <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
+                </div>
+                <div className="absolute top-1 right-6 font-bold bg-white text-pink-600 rounded-full w-5 text-sm">
+                  <p>{cart.length}</p>
+                </div>
+                {dropDown ? (
+                  <div className="block bg-pink-500 absolute top-16 z-10">
+                    <Cart></Cart>
+                  </div>
+                ) : (
+                  <div className="hidden">
+                    <Cart></Cart>
+                  </div>
+                )}
+              </button>
+            </li>
+          </div>
         </ul>
         <div className="lg:hidden">
           <button

@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { getCartAndProductData } from "../../Utilities/getProductAndCart";
 import About from "../About";
+import Cart from "../Cart";
 import ErrorPage from "../ErrorPage";
 import Home from "../Home";
 import OrderReview from "../OrderReview";
@@ -38,10 +39,10 @@ export const router = createBrowserRouter([
         path: "/about",
         element: <About></About>,
       },
-      // {
-      //   path: "/cart",
-      //   element: <Cart></Cart>,
-      // },
+      {
+        path: "/cart",
+        element: <Cart></Cart>,
+      },
     ],
   },
 ]);

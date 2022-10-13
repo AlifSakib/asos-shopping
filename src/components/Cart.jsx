@@ -1,57 +1,43 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CartContext } from "./Root/Root";
 
 const Cart = () => {
+  const [cart, setCart] = useContext(CartContext);
+  let totalPrice = 0;
+  let quantity = 0;
+  for (const product of cart) {
+    quantity = product.quantity + quantity;
+    totalPrice = product.price * product.quantity + totalPrice;
+  }
+  let discount = totalPrice * 0.08;
+
   return (
-    <div>
-      <div className="flex flex-col max-w-md p-6 space-y-4 divide-y sm:w-96 sm:p-10 divide-gray-700 dark:bg-gray-900 dark:text-gray-100 mx-auto w-9/12">
+    <div className="">
+      <div className="flex flex-col max-w-md p-6 space-y-4 divide-y sm:w-96 sm:p-10 divide-gray-700 dark:bg-gray-900 dark:text-gray-100 mx-auto w-9/12 ">
         <h2 className="text-2xl font-semibold">Order items</h2>
         <ul className="flex flex-col pt-4 space-y-2">
-          <li className="flex items-start justify-between">
-            <h3>
-              Hard taco, chicken
-              <span className="text-sm dark:text-violet-400">x3</span>
-            </h3>
-            <div className="text-right">
-              <span className="block">$7.50</span>
-              <span className="text-sm dark:text-gray-400">à $2.50</span>
-            </div>
-          </li>
-          <li className="flex items-start justify-between">
-            <h3>
-              Hard taco, beef
-              <span className="text-sm dark:text-violet-400">x3</span>
-            </h3>
-            <div className="text-right">
-              <span className="block">$8.25</span>
-              <span className="text-sm dark:text-gray-400">à $2.75</span>
-            </div>
-          </li>
-          <li className="flex items-start justify-between">
-            <h3>
-              Curly fries
-              <span className="text-sm dark:text-violet-400">x1</span>
-            </h3>
-            <div className="text-right">
-              <span className="block">$1.75</span>
-              <span className="text-sm dark:text-gray-400">à $1.75</span>
-            </div>
-          </li>
-          <li className="flex items-start justify-between">
-            <h3>
-              Large soda
-              <span className="text-sm dark:text-violet-400">x2</span>
-            </h3>
-            <div className="text-right">
-              <span className="block">$4.00</span>
-              <span className="text-sm dark:text-gray-400">à $2.00</span>
-            </div>
-          </li>
+          {cart.map((product) => (
+            <li className="flex items-start justify-between">
+              <h3>
+                {product.name.slice(0, 15)}
+                <span className="text-sm dark:text-violet-400">
+                  x{product.quantity}
+                </span>
+              </h3>
+              <div className="text-right">
+                <span className="block">${product.price}</span>
+                <span className="text-sm dark:text-gray-400">
+                  ${product.price * product.quantity}
+                </span>
+              </div>
+            </li>
+          ))}
         </ul>
         <div className="pt-4 space-y-2">
           <div>
             <div className="flex justify-between">
               <span>Subtotal</span>
-              <span>$21.50</span>
+              <span>${totalPrice}</span>
             </div>
             <div className="flex items-center space-x-2 text-xs">
               <svg
@@ -63,13 +49,13 @@ const Cart = () => {
                 <path d="M148,96a52,52,0,1,0,52,52A52.059,52.059,0,0,0,148,96Zm0,72a20,20,0,1,1,20-20A20.023,20.023,0,0,1,148,168Z"></path>
               </svg>
               <span className="dark:text-gray-400">
-                Spend $20.00, get 20% off
+                Spend $2000.00, get 40% off
               </span>
             </div>
           </div>
           <div className="flex justify-between">
             <span>Discount</span>
-            <span>-$4.30</span>
+            <span>-${totalPrice * 0.08}</span>
           </div>
         </div>
         <div className="pt-4 space-y-2">
@@ -93,7 +79,9 @@ const Cart = () => {
           <div className="space-y-6">
             <div className="flex justify-between">
               <span>Total</span>
-              <span className="font-semibold">$22.70</span>
+              <span className="font-semibold">
+                ${totalPrice - 4 - 0.5 - discount}
+              </span>
             </div>
             <button
               type="button"

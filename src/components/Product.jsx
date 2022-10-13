@@ -1,33 +1,34 @@
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 const Product = ({ product, addToCart }) => {
   const { img, name, price, seller, ratings } = product;
 
   return (
-    <div>
-      <div className="flex flex-col  md:h-[400px] h-[550px]">
-        <img src={img} alt="" />
-        <div className="flex-grow border border-t-0 rounded-b relative">
-          <div className="p-5 mb-14 space-y-3 ">
-            <h6 className="mb-2 font-semibold leading-5">
-              {name.slice(0, 15)}
-            </h6>
-            <button className=" border-emerald-500 border-2 rounded-lg px-2 text-green-500 font-bold tracking-widest ">
-              ${price}.00
-            </button>
-          </div>
-          <div className="text-start px-4 absolute bottom-10 ">
-            <p className="text-sm text-gray-900">Manufacture : {seller}</p>
-            <p className="text-sm text-gray-900">Rating : {ratings}</p>
-          </div>
-          <div className="absolute bottom-0 w-full">
-            <button
-              onClick={() => addToCart(product)}
-              className="w-full bg-purple-600 py-1 text-white"
-            >
-              Add To Cart
-            </button>
-          </div>
+    <div className="relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl cursor-pointer ">
+      <img
+        className="object-cover w-full h-56 md:h-64 xl:h-80"
+        src={img}
+        alt=""
+      />
+      <div className="absolute inset-0 px-6 py-4 transition-opacity duration-200 bg-black bg-opacity-75 opacity-0 hover:opacity-100 flex justify-center items-center flex-col space-y-1">
+        <p className="mb-4 text-lg font-bold text-gray-100 font-lora">
+          {name.slice(0, 15)}
+        </p>
+        <button className="text-sm tracking-wide text-gray-300 border-2 rounded-md px-5 border-yellow-500 ">
+          {price}$
+        </button>
+        <p className="text-sm tracking-wide text-gray-300">
+          Manufecture : {seller}
+        </p>
+        <p className="text-sm tracking-wide text-gray-300">
+          Rating : {ratings}
+        </p>
+        <div className="w-10 h-10 bg-pink-500 flex items-center justify-center rounded-full absolute bottom-5 right-5 text-white hover:bg-white hover:text-pink-500">
+          <button className="w-full" onClick={() => addToCart(product)}>
+            <FontAwesomeIcon icon={faCartShopping}></FontAwesomeIcon>
+          </button>
         </div>
       </div>
     </div>

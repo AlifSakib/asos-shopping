@@ -106,7 +106,7 @@ const Header = () => {
                   <p>{cart.length}</p>
                 </div>
                 {dropDown ? (
-                  <div className="block bg-pink-500 absolute top-16 z-10">
+                  <div className="block bg-pink-500 absolute top-16 z-10 rounded-xl">
                     <Cart></Cart>
                   </div>
                 ) : (
@@ -145,10 +145,10 @@ const Header = () => {
               <div className="p-5 bg-white border rounded shadow-sm">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <a
-                      href="/"
-                      aria-label="Company"
-                      title="Company"
+                    <Link
+                      to="/"
+                      aria-label="ASOS"
+                      title="ASOS"
                       className="inline-flex items-center"
                     >
                       <svg
@@ -169,7 +169,7 @@ const Header = () => {
                       <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
                         A S O S
                       </span>
-                    </a>
+                    </Link>
                   </div>
                   <div>
                     <button
@@ -190,55 +190,44 @@ const Header = () => {
                 <nav>
                   <ul className="space-y-4">
                     <li>
-                      <a
-                        href="/"
+                      <Link
+                        to="/home"
                         aria-label="Our product"
                         title="Our product"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        Product
-                      </a>
+                        Home
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="/"
+                      <Link
+                        to="/products"
                         aria-label="Our product"
                         title="Our product"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        Features
-                      </a>
+                        Products
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="/"
+                      <Link
+                        to="/stats"
                         aria-label="Product pricing"
                         title="Product pricing"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        Pricing
-                      </a>
+                        Statistics
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="/"
+                      <Link
+                        to="/order"
                         aria-label="About us"
                         title="About us"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        About us
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/"
-                        className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none
-                        bg-violet-700"
-                        aria-label="Sign up"
-                        title="Sign up"
-                      >
-                        Cart
-                      </a>
+                        Order Review
+                      </Link>
                     </li>
                   </ul>
                 </nav>

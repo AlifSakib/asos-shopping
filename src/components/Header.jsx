@@ -10,7 +10,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [cart, setCart] = useContext(CartContext);
   const [dropDown, setDropDown] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 relative">
@@ -81,26 +81,34 @@ const Header = () => {
               Order Review
             </Link>
           </li>
-          <li>
-            <Link
-              to="/login"
-              aria-label="Order Review"
-              title="Order Review"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              Login
+          {user?.uid ? (
+            <Link to="/login">
+              <button onClick={logOut}>Signout</button>
             </Link>
-          </li>
-          <li>
-            <Link
-              to="/signup"
-              aria-label="Order Review"
-              title="Order Review"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              Signup
-            </Link>
-          </li>
+          ) : (
+            <>
+              <li>
+                <Link
+                  to="/login"
+                  aria-label="Order Review"
+                  title="Order Review"
+                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                >
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/signup"
+                  aria-label="Order Review"
+                  title="Order Review"
+                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                >
+                  Signup
+                </Link>
+              </li>
+            </>
+          )}
           {user?.email && (
             <li>
               <Link

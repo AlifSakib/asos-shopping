@@ -10,6 +10,7 @@ import Products from "../Products";
 import Root from "../Root/Root";
 import Signup from "../Signup";
 import Stacistics from "../Statistics";
+import PrivateRoutes from "./PrivateRoutes";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -35,7 +36,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/order",
-        element: <OrderReview></OrderReview>,
+        element: (
+          <PrivateRoutes>
+            <OrderReview></OrderReview>
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/login",

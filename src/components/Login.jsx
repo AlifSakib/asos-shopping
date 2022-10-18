@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "./Contexts/UserContext";
 
 const Login = () => {
   const { logInUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/home";
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -17,7 +19,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate("/home");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
@@ -58,7 +60,7 @@ const Login = () => {
             <button
               className={`bg-green py-2 px-4 text-sm  rounded border border-green focus:outline-none focus:border-green-dark`}
             >
-              Signup
+              Login
             </button>
           </div>
         </form>

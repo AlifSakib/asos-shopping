@@ -4,9 +4,11 @@ import About from "../About";
 import Cart from "../Cart";
 import ErrorPage from "../ErrorPage";
 import Home from "../Home";
+import Login from "../Login";
 import OrderReview from "../OrderReview";
 import Products from "../Products";
 import Root from "../Root/Root";
+import Signup from "../Signup";
 import Stacistics from "../Statistics";
 export const router = createBrowserRouter([
   {
@@ -34,6 +36,14 @@ export const router = createBrowserRouter([
       {
         path: "/order",
         element: <OrderReview></OrderReview>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/signup",
+        element: <Signup></Signup>,
       },
       {
         path: "/about",

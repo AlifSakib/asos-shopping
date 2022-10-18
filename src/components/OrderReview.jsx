@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { CartContext } from "./Root/Root";
 
 const OrderReview = () => {
@@ -32,6 +33,7 @@ const OrderReview = () => {
                       Quantity : {product.quantity}
                     </p>
                   </div>
+                  npm install{" "}
                   <div className="text-right">
                     <p className="text-lg font-semibold">{product.price}$</p>
                   </div>
@@ -84,13 +86,15 @@ const OrderReview = () => {
         </p>
       </div>
       <div className="flex justify-end space-x-4">
-        <button
-          type="button"
-          className="px-6 py-2 border rounded-md dark:border-violet-400"
-        >
-          Back
-          <span className="sr-only sm:not-sr-only">to shop</span>
-        </button>
+        <Link to="/products">
+          <button
+            type="button"
+            className="px-6 py-2 border rounded-md dark:border-violet-400"
+          >
+            Back
+            <span className="sr-only sm:not-sr-only">to shop</span>
+          </button>
+        </Link>
         <button
           type="button"
           className="px-6 py-2 border rounded-md dark:bg-violet-400 dark:text-gray-900 dark:border-violet-400"
